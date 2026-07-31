@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI業務改善診断 | Edge Current</title>
+  <style>
+    :root {
+      --navy: #0f2742;
+      --navy-soft: #173b5f;
+      --ink: #17202a;
+      --muted: #52616b;
+      --line: #dce4eb;
+      --paper: #ffffff;
+      --soft: #f5f8fb;
+      --accent: #1f6f68;
+      --accent-soft: #e7f1ef;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); }
+    a { color: inherit; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 22px; }
+    .nowrap { white-space: nowrap; }
+    .hero {
+      background: var(--navy);
+      color: #fff;
+      padding: 34px 0 58px;
+    }
+    .nav {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 54px;
+    }
+    .brand { font-size: 17px; font-weight: 800; letter-spacing: 0; }
+    .nav-note { color: #c8d5e1; font-size: 13px; }
+    .hero-grid {
+      align-items: center;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.7fr);
+      gap: 46px;
+    }
+    .eyebrow {
+      color: #b8d8d3;
+      font-size: 14px;
+      font-weight: 800;
+      margin: 0 0 14px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      font-size: clamp(31px, 4.1vw, 46px);
+      line-height: 1.18;
+      margin-bottom: 20px;
+    }
+    .hero-line {
+      display: block;
+      white-space: nowrap;
+    }
+    .hero-keyword {
+      color: #b8d8d3;
+      font-size: 1.2em;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+    h2 {
+      color: var(--navy);
+      font-size: 30px;
+      line-height: 1.45;
+      margin-bottom: 18px;
+    }
+    h3 { color: var(--navy); font-size: 18px; margin-bottom: 10px; }
+    p { line-height: 1.85; }
+    .lead {
+      color: #e6eef6;
+      font-size: 18px;
+      line-height: 1.85;
+      margin-bottom: 24px;
+      max-width: 720px;
+    }
+    .cta-row {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 16px;
+    }
+    .button {
+      align-items: center;
+      background: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      color: #fff;
+      display: inline-flex;
+      font-weight: 800;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 20px;
+      text-decoration: none;
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+    .button:hover {
+      background: var(--navy-soft);
+      border-color: var(--navy-soft);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .button:focus {
+      outline: 3px solid #b8d8d3;
+      outline-offset: 3px;
+    }
+    .hero .button,
+    .final-cta .button {
+      background: #fff;
+      border-color: #fff;
+      color: var(--navy);
+    }
+    .hero .button:hover,
+    .final-cta .button:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent-soft);
+      color: var(--navy);
+    }
+    .microcopy { color: #c8d5e1; font-size: 13px; margin: 0; }
+    .hero-note {
+      color: #d7e2ec;
+      flex-basis: 100%;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .hero-brand-copy {
+      color: #c8d5e1;
+      flex-basis: 100%;
+      font-size: clamp(14px, 1.6vw, 16px);
+      line-height: 1.75;
+      margin: 2px 0 0;
+    }
+    .hero-brand-copy strong {
+      color: #eef5fb;
+      font-weight: 900;
+    }
+    .hero-points {
+      display: grid;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .hero-points li {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      color: #eef5fb;
+      font-weight: 700;
+      line-height: 1.55;
+      padding: 14px 16px;
+    }
+    section { padding: 62px 0; }
+    .band { background: var(--soft); }
+    .section-head { max-width: 780px; }
+    .section-copy {
+      color: #334150;
+      font-size: 16px;
+      line-height: 1.9;
+      margin-bottom: 10px;
+      max-width: 820px;
+    }
+    .empathy-list {
+      color: #223242;
+      display: grid;
+      gap: 5px;
+      font-weight: 800;
+      list-style: none;
+      margin: 12px 0 12px;
+      padding: 0;
+    }
+    .closing-copy {
+      background: var(--accent-soft);
+      border: 1px solid #bfd9d4;
+      border-radius: 8px;
+      color: #173b5f;
+      font-weight: 800;
+      line-height: 1.75;
+      margin: 24px 0 0;
+      padding: 16px 18px;
+    }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 26px;
+    }
+    .problem-item,
+    .trust-item,
+    .result-item,
+    .step-item,
+    .faq details {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      line-height: 1.65;
+      padding: 16px 18px;
+    }
+    .problem-item { font-weight: 700; }
+    .service-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.75fr);
+      gap: 42px;
+    }
+    .body-copy {
+      color: #334150;
+      font-size: 16px;
+      line-height: 1.9;
+    }
+    .result-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+    }
+    .result-item {
+      min-height: 184px;
+      list-style: none;
+    }
+    .result-icon {
+      color: var(--accent);
+      display: block;
+      height: 32px;
+      margin-bottom: 12px;
+      width: 32px;
+    }
+    .result-icon svg {
+      display: block;
+      height: 32px;
+      stroke: currentColor;
+      width: 32px;
+    }
+    .result-item strong {
+      color: var(--navy);
+      display: block;
+      margin-bottom: 7px;
+    }
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 26px;
+    }
+    .step-item {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      min-height: 150px;
+      word-break: keep-all;
+    }
+    .step-number {
+      background: var(--accent-soft);
+      border-radius: 999px;
+      color: var(--accent);
+      display: inline-grid;
+      font-size: 13px;
+      font-weight: 800;
+      height: 28px;
+      margin-bottom: 14px;
+      place-items: center;
+      width: 28px;
+    }
+    .step-title {
+      color: var(--navy);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.55;
+      margin: 0;
+      word-break: keep-all;
+    }
+    .step-note {
+      color: var(--muted);
+      display: block;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.65;
+      margin: 8px 0 0;
+      word-break: normal;
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 26px;
+    }
+    .trust-item {
+      min-height: 154px;
+    }
+    .trust-item strong {
+      color: var(--navy);
+      display: block;
+      margin-bottom: 7px;
+    }
+    .final-cta {
+      background: var(--navy);
+      color: #fff;
+      padding: 84px 0 78px;
+    }
+    .final-cta h2 {
+      color: #fff;
+      font-size: clamp(28px, 3.4vw, 40px);
+      line-height: 1.45;
+      margin-bottom: 28px;
+      max-width: 880px;
+    }
+    .cta-title-line {
+      display: block;
+      word-break: keep-all;
+    }
+    .final-cta .body-copy {
+      color: #e6eef6;
+      font-weight: 400;
+      line-height: 1.85;
+      margin-bottom: 14px;
+      max-width: 760px;
+    }
+    .final-cta .cta-note {
+      color: #fff;
+      font-weight: 400;
+      margin: 16px 0 0;
+      max-width: 760px;
+    }
+    .monitor-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      color: #e6eef6;
+      font-weight: 400;
+      line-height: 1.8;
+      margin: 34px 0 32px;
+      max-width: 760px;
+      padding: 20px 22px;
+    }
+    .monitor-box strong {
+      color: #fff;
+      display: block;
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .monitor-box p {
+      font-weight: 400;
+      margin: 0 0 8px;
+    }
+    .final-cta .cta-row {
+      margin-top: 0;
+    }
+    .final-cta .button {
+      font-size: 17px;
+      min-height: 56px;
+      padding: 15px 26px;
+    }
+    .faq-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 26px;
+    }
+    .faq details { padding: 0; }
+    .faq summary {
+      color: var(--navy);
+      cursor: pointer;
+      font-weight: 800;
+      line-height: 1.55;
+      list-style: none;
+      padding: 16px 18px;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      color: var(--accent);
+      content: "+";
+      float: right;
+      font-size: 20px;
+      line-height: 1;
+      margin-left: 12px;
+    }
+    .faq details[open] summary::after { content: "-"; }
+    .faq p {
+      border-top: 1px solid var(--line);
+      color: #334150;
+      margin: 0;
+      padding: 14px 18px 16px;
+    }
+    .cta-points {
+      color: #d7e2ec;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      list-style: none;
+      margin: 30px 0 0;
+      padding: 0;
+    }
+    .cta-points li {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      font-weight: 500;
+      padding: 7px 12px;
+    }
+    footer {
+      background: #081929;
+      color: #b8c7d5;
+      font-size: 13px;
+      padding: 22px 0;
+    }
+    .brand-message {
+      background: var(--paper);
+      padding: 56px 0;
+    }
+    .brand-message h2 { margin-bottom: 14px; }
+    .brand-message .body-copy { max-width: 820px; }
+    .brand-emphasis {
+      color: var(--navy);
+      font-size: clamp(19px, 2.2vw, 24px);
+      font-weight: 900;
+      line-height: 1.75;
+      margin: 18px 0 0;
+      max-width: 900px;
+    }
+
+    @media (max-width: 1040px) {
+      .flow-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 820px) {
+      .hero { padding-top: 24px; }
+      .nav { align-items: flex-start; flex-direction: column; margin-bottom: 36px; }
+      .hero-grid,
+      .service-grid,
+      .problem-grid,
+      .result-list {
+        grid-template-columns: 1fr;
+      }
+      .trust-grid,
+      .flow-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      h1 { font-size: 32px; }
+      h2 { font-size: 24px; }
+      section { padding: 48px 0; }
+      .wrap { padding: 0 18px; }
+      .final-cta { padding: 64px 0 60px; }
+      .final-cta .button { width: 100%; }
+      .result-item,
+      .trust-item,
+      .step-item {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .trust-grid,
+      .flow-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 390px) {
+      h1 { font-size: clamp(28px, 8.2vw, 32px); }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">Edge Current</div>
+        <div class="nav-note">AI業務改善診断</div>
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">従業員20名以下の企業向け</p>
+          <h1>
+            <span class="hero-line">その忙しさ、</span>
+            <span class="hero-line hero-keyword">「仕事の仕組み」</span>
+            <span class="hero-line">が原因かもしれません。</span>
+          </h1>
+          <p class="lead">毎日の「待つ・探す・やり直す」を見える化し、あなたの会社が最初に改善すべき仕事を整理します。</p>
+          <div class="cta-row">
+            <a class="button js-google-form-link" href="#">業務改善診断に申し込む</a>
+            <p class="hero-note">60〜90分のオンライン面談。申込み後に日程を調整します。</p>
+            <p class="hero-brand-copy"><strong>待つ。探す。やり直す。</strong><br>その時間を、価値ある時間へ。</p>
+          </div>
+        </div>
+
+        <ul class="hero-points" aria-label="診断の特徴">
+          <li>従業員20名以下の企業向け</li>
+          <li>オンラインで完結</li>
+          <li>PDF診断レポート付き</li>
+          <li>AIありきの提案はしません</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="band">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>毎日頑張っているのに、仕事が終わらない。</h2>
+          <p class="section-copy">社員はサボっていない。</p>
+          <p class="section-copy">社長も忙しい。</p>
+          <p class="section-copy">それでも、</p>
+          <ul class="empathy-list">
+            <li>確認待ち</li>
+            <li>書類探し</li>
+            <li>同じ内容の入力</li>
+            <li>修正ややり直し</li>
+          </ul>
+          <p class="section-copy">そんな小さな時間が積み重なり、会社全体の生産性を下げていることがあります。</p>
+          <p class="section-copy">一つひとつは小さな手間でも、毎日繰り返されることで、大きな時間になります。</p>
+          <p class="section-copy">さらに、近年はAIという言葉を耳にする機会も増え、</p>
+          <p class="section-copy">「何から始めればいいのかわからない」</p>
+          <p class="section-copy">「このままで大丈夫なのだろうか」</p>
+          <p class="section-copy">と感じている経営者の方も少なくありません。</p>
+        </div>
+        <div class="problem-grid">
+          <div class="problem-item">必要な書類やデータを探すのに時間がかかる</div>
+          <div class="problem-item">社長や特定の社員に確認しないと仕事が進まない</div>
+          <div class="problem-item">同じ内容を何度も入力している</div>
+          <div class="problem-item">見積書や報告書の作成に時間がかかる</div>
+          <div class="problem-item">上司の確認待ちで仕事が止まる</div>
+          <div class="problem-item">修正ややり直しが多い</div>
+          <div class="problem-item">担当者しかやり方を知らない仕事がある</div>
+          <div class="problem-item">忙しいが、何から改善すべきかわからない</div>
+        </div>
+        <p class="closing-copy">問題は、人の頑張りではなく、仕事の進め方や情報の流れにあるかもしれません。</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap service-grid">
+        <div>
+          <h2>まず必要なのは、AIの導入ではなく、<br>改善すべき仕事を見つけることです。</h2>
+          <p class="body-copy">Edge CurrentのAI業務改善診断では、現在の仕事の進め方をオンラインで伺い、面談内容をもとに、時間がかかっている業務や改善効果の大きい業務を整理します。</p>
+          <p class="body-copy">AIだけで結論を出すのではなく、AIによる整理・分析の後に、人が内容を最終確認し、改善優先度の高い業務を診断レポートとしてまとめます。</p>
+        </div>
+        <div>
+          <h3>診断でわかること</h3>
+          <ul class="result-list">
+            <li class="result-item"><span class="result-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19h16"/><path d="M7 16V9"/><path d="M12 16V5"/><path d="M17 16v-4"/></svg></span><strong>改善優先順位</strong>何から改善すれば効果が大きいかを整理します。</li>
+            <li class="result-item"><span class="result-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2"/></svg></span><strong>年間削減時間</strong>どれくらいの時間を減らせる可能性があるかを算出します。</li>
+            <li class="result-item"><span class="result-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 7h16"/><path d="M4 12h10"/><path d="M4 17h7"/><circle cx="18" cy="17" r="2"/></svg></span><strong>ボトルネック</strong>確認待ち、情報探索、転記、やり直しなど、仕事が止まる原因を整理します。</li>
+            <li class="result-item"><span class="result-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M4 20c1-4 9-4 10 0"/><path d="M17 8h3"/><path d="M18.5 6.5v3"/></svg></span><strong>属人化している業務</strong>特定の担当者しかできない仕事や、引き継ぎにくい仕事を整理します。</li>
+            <li class="result-item"><span class="result-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h12"/><path d="M13 8l4 4-4 4"/><path d="M5 5h14v14H5z"/></svg></span><strong>次に取り組むべき改善テーマ</strong>すべてを一度に変えるのではなく、次に取り組むべきテーマを示します。</li>
+            <li class="result-item"><span class="result-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></span><strong>PDF診断レポート</strong>面談内容と診断結果を整理したPDFレポートをお渡しします。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>診断は、1回のオンライン面談で完結します。</h2>
+        </div>
+        <div class="flow-grid">
+          <div class="step-item">
+            <div class="step-number">1</div>
+            <h3 class="step-title"><span class="nowrap">Googleフォームから申込み</span></h3>
+            <p class="step-note">&nbsp;</p>
+          </div>
+          <div class="step-item">
+            <div class="step-number">2</div>
+            <h3 class="step-title">日程調整</h3>
+            <p class="step-note">&nbsp;</p>
+          </div>
+          <div class="step-item">
+            <div class="step-number">3</div>
+            <h3 class="step-title">事前確認</h3>
+            <p class="step-note">申込み内容を確認し、必要に応じて面談前の確認を行います。</p>
+          </div>
+          <div class="step-item">
+            <div class="step-number">4</div>
+            <h3 class="step-title">60〜90分の<span class="nowrap">オンライン面談</span></h3>
+            <p class="step-note">&nbsp;</p>
+          </div>
+          <div class="step-item">
+            <div class="step-number">5</div>
+            <h3 class="step-title">AIによる整理・分析</h3>
+            <p class="step-note">&nbsp;</p>
+          </div>
+          <div class="step-item">
+            <div class="step-number">6</div>
+            <h3 class="step-title">Edge Currentによる確認</h3>
+            <p class="step-note">&nbsp;</p>
+          </div>
+          <div class="step-item">
+            <div class="step-number">7</div>
+            <h3 class="step-title">面談中に診断結果を説明</h3>
+            <p class="step-note">&nbsp;</p>
+          </div>
+          <div class="step-item">
+            <div class="step-number">8</div>
+            <h3 class="step-title">面談終了後に<span class="nowrap">PDFレポートを送付</span></h3>
+            <p class="step-note">&nbsp;</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2>AIを導入するかどうかを決める前に、まず知っておきたいことがあります。</h2>
+          <p class="section-copy">AIを導入すれば、すべての会社が良くなるわけではありません。</p>
+          <p class="section-copy">もしかすると、仕事の進め方や情報共有を少し見直すだけで改善できるかもしれません。</p>
+          <p class="section-copy">一方で、AIを活用することで大きな効果を生む業務もあります。</p>
+          <p class="section-copy">だから私たちは、AIを提案する前に、まず「何を改善すべきか」を一緒に整理します。</p>
+          <p class="brand-emphasis">「AIを導入するかどうか」を決める前に、まずは「何を改善すべきか」を知ることから始めませんか。</p>
+        </div>
+        <div class="trust-grid">
+          <div class="trust-item"><strong>人が最終確認</strong>AIの分析結果をそのまま提出せず、内容を人が確認します。</div>
+          <div class="trust-item"><strong>AIありきにしない</strong>AI導入を前提にせず、現在の会社に合う改善方法を考えます。</div>
+          <div class="trust-item"><strong>効果を数字で整理</strong>作業時間や頻度をもとに、年間削減時間や改善余地を整理します。</div>
+          <div class="trust-item"><strong>事実に基づいて診断</strong>面談で確認できた事実をもとに分析し、推測だけで診断結果を作りません。</div>
+          <div class="trust-item"><strong>診断目的に限定</strong>面談内容は、診断サービスの提供目的にのみ使用します。</div>
+          <div class="trust-item"><strong>録音時は事前説明</strong>録音を行う場合は事前に説明し、診断サービス提供完了後に削除します。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band faq">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>よくある質問</h2>
+        </div>
+        <div class="faq-grid">
+          <details>
+            <summary>AIの知識がなくても申し込めますか？</summary>
+            <p>はい。AIの知識は必要ありません。現在の仕事の流れや困っていることをお聞きします。</p>
+          </details>
+          <details>
+            <summary>どのような業種でも申し込めますか？</summary>
+            <p>はい。業種は限定していません。主に従業員20名以下の小規模企業や個人事業者を対象としています。現在の業務に負担を感じている場合は、業種を問わずご相談いただけます。</p>
+          </details>
+          <details>
+            <summary>面談には何を準備すればよいですか？</summary>
+            <p>特別な資料は必須ではありません。時間がかかっている仕事、改善したい仕事、負担になっている仕事を事前に考えておくとスムーズです。</p>
+          </details>
+          <details>
+            <summary>AIツールを導入するサービスですか？</summary>
+            <p>いいえ。業務を整理し、改善すべき仕事を明らかにするサービスです。必要がなければAI導入を提案しません。</p>
+          </details>
+          <details>
+            <summary>診断後に契約する必要はありますか？</summary>
+            <p>ありません。診断結果を説明したうえで、必要に応じて次の改善方法をご案内する場合がありますが、契約を強制することはありません。</p>
+          </details>
+          <details>
+            <summary>無理な営業はありませんか？</summary>
+            <p>ありません。診断後の改善支援は、ご希望がある場合にのみご案内します。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="wrap">
+        <h2><span class="cta-title-line">まずは、あなたの会社の</span><span class="cta-title-line">「忙しい原因」を整理してみませんか？</span></h2>
+        <p class="body-copy">60〜90分のオンライン面談で、現在の業務を整理し、改善すべき優先順位を明らかにします。</p>
+        <p class="body-copy">面談後には、診断結果をまとめたPDFレポートをお送りします。</p>
+        <p class="body-copy cta-note">無理な営業は行いません。</p>
+        <div class="monitor-box">
+          <strong>モニター企業を募集しています</strong>
+          <p>現在、サービス品質向上のため、診断後のご意見にご協力いただける企業を募集しています。</p>
+          <p>診断内容や進行方法は、通常のサービスと同様です。</p>
+        </div>
+        <div class="cta-row">
+          <a class="button js-google-form-link" href="#">業務改善診断に申し込む</a>
+        </div>
+        <ul class="cta-points" aria-label="申込み前の補足">
+          <li>オンライン完結</li>
+          <li>PDF診断レポート付き</li>
+          <li>申込み後に日程調整</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="brand-message">
+      <div class="wrap">
+        <h2>人の時間を、もっと価値あることへ。</h2>
+        <p class="body-copy">私たちは、AIを導入すること自体を目的にしていません。</p>
+        <p class="body-copy">会社から「待つ」「探す」「やり直す」を減らし、人が本来の仕事に集中できる会社を増やしたいと考えています。</p>
+        <p class="body-copy">そのための第一歩が、AI業務改善診断です。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Edge Current AI業務改善診断</div>
+  </footer>
+
+  <script>
+    const GOOGLE_FORM_URL = "https://forms.gle/83FBegiZ1ow7P1Te9";
+
+    document.querySelectorAll(".js-google-form-link").forEach((link) => {
+      link.href = GOOGLE_FORM_URL;
+      link.target = "_blank";
+      link.rel = "noopener";
+    });
+  </script>
+</body>
+</html>
