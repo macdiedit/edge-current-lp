@@ -75,7 +75,7 @@
       margin-bottom: 18px;
     }
     h3 { color: var(--navy); font-size: 18px; margin-bottom: 10px; }
-    p { line-height: 1.85; }
+    p { line-height: 1.85; overflow-wrap: anywhere; }
     .lead {
       color: #e6eef6;
       font-size: 18px;
@@ -144,21 +144,90 @@
       color: #eef5fb;
       font-weight: 900;
     }
-    .hero-points {
+    .hero-side {
+      width: 100%;
+    }
+    .hero-image-frame {
+      aspect-ratio: 4 / 3;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(231, 241, 239, 0.9)),
+        linear-gradient(90deg, rgba(15, 39, 66, 0.08), rgba(31, 111, 104, 0.08));
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+    .hero-image-frame::before {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(15, 39, 66, 0.1);
+      border-radius: 6px;
+      bottom: 18%;
+      content: "";
+      left: 10%;
+      position: absolute;
+      right: 16%;
+      top: 18%;
+    }
+    .hero-image-frame::after {
+      background:
+        linear-gradient(var(--navy), var(--navy)) 18% 36% / 32% 2px no-repeat,
+        linear-gradient(var(--accent), var(--accent)) 18% 52% / 48% 2px no-repeat,
+        linear-gradient(var(--navy), var(--navy)) 18% 68% / 24% 2px no-repeat,
+        rgba(231, 241, 239, 0.72);
+      border: 1px solid rgba(31, 111, 104, 0.16);
+      border-radius: 6px;
+      bottom: 22%;
+      content: "";
+      position: absolute;
+      right: 9%;
+      top: 24%;
+      width: 34%;
+    }
+    .intro-grid {
+      align-items: start;
       display: grid;
-      gap: 10px;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+      gap: 40px;
+    }
+    .feature-points {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
       list-style: none;
       margin: 0;
       padding: 0;
     }
-    .hero-points li {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 8px;
-      color: #eef5fb;
+    .feature-points li {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: 0 1px 2px rgba(15, 39, 66, 0.05);
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 14px;
       font-weight: 700;
-      line-height: 1.55;
+      line-height: 1.5;
+      min-height: 74px;
       padding: 14px 16px;
+    }
+    .feature-icon {
+      align-items: center;
+      background: var(--accent-soft);
+      border-radius: 999px;
+      color: var(--navy);
+      display: inline-flex;
+      flex: none;
+      height: 44px;
+      justify-content: center;
+      width: 44px;
+    }
+    .feature-icon svg {
+      display: block;
+      height: 22px;
+      stroke: currentColor;
+      width: 22px;
     }
     section { padding: 62px 0; }
     .band { background: var(--soft); }
@@ -254,21 +323,40 @@
     }
     .step-item {
       display: grid;
-      grid-template-rows: auto auto 1fr;
+      grid-template-rows: auto auto auto 1fr;
+      padding: 18px 20px;
       min-height: 150px;
-      word-break: keep-all;
+      word-break: normal;
     }
-    .step-number {
-      background: var(--accent-soft);
-      border-radius: 999px;
+    .step-label {
       color: var(--accent);
-      display: inline-grid;
-      font-size: 13px;
+      display: block;
+      font-size: 11px;
       font-weight: 800;
-      height: 28px;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      margin-bottom: 9px;
+    }
+    .step-icon {
+      align-items: center;
+      background: var(--accent-soft);
+      border: 1px solid #bfd9d4;
+      border-radius: 8px;
+      color: var(--accent);
+      display: inline-flex;
+      height: 38px;
       margin-bottom: 14px;
-      place-items: center;
-      width: 28px;
+      padding: 7px;
+      width: 38px;
+    }
+    .step-icon svg {
+      display: block;
+      height: 22px;
+      stroke: var(--navy);
+      width: 22px;
+    }
+    .step-icon .accent-line {
+      stroke: var(--accent);
     }
     .step-title {
       color: var(--navy);
@@ -276,7 +364,8 @@
       font-weight: 600;
       line-height: 1.55;
       margin: 0;
-      word-break: keep-all;
+      overflow-wrap: anywhere;
+      word-break: normal;
     }
     .step-note {
       color: var(--muted);
@@ -434,6 +523,7 @@
       .hero { padding-top: 24px; }
       .nav { align-items: flex-start; flex-direction: column; margin-bottom: 36px; }
       .hero-grid,
+      .intro-grid,
       .service-grid,
       .problem-grid,
       .result-list {
@@ -461,10 +551,12 @@
       .flow-grid {
         grid-template-columns: 1fr;
       }
+      .feature-points li { min-height: auto; }
     }
 
     @media (max-width: 390px) {
       h1 { font-size: clamp(28px, 8.2vw, 32px); }
+      .hero-line { white-space: normal; }
     }
   </style>
 </head>
@@ -487,17 +579,14 @@
           <p class="lead">毎日の「待つ・探す・やり直す」を見える化し、あなたの会社が最初に改善すべき仕事を整理します。</p>
           <div class="cta-row">
             <a class="button js-google-form-link" href="#">業務改善診断に申し込む</a>
-            <p class="hero-note">約60分のオンライン面談。申込み後に日程を調整します。</p>
+            <p class="hero-note">約60分のオンライン面談。申込み後、予約ページで日時を選択します。</p>
             <p class="hero-brand-copy"><strong>待つ。探す。やり直す。</strong><br>その時間を、価値ある時間へ。</p>
           </div>
         </div>
 
-        <ul class="hero-points" aria-label="診断の特徴">
-          <li>従業員20名以下の企業向け</li>
-          <li>オンラインで完結</li>
-          <li>PDF診断レポート付き</li>
-          <li>AIありきの提案はしません</li>
-        </ul>
+        <div class="hero-side">
+          <div class="hero-image-frame" role="img" aria-label="ノート、PC、資料を前に仕事を整理している手元の画像枠"></div>
+        </div>
       </div>
     </div>
   </header>
@@ -505,23 +594,31 @@
   <main>
     <section class="band">
       <div class="wrap">
-        <div class="section-head">
-          <h2>毎日頑張っているのに、仕事が終わらない。</h2>
-          <p class="section-copy">社員はサボっていない。</p>
-          <p class="section-copy">社長も忙しい。</p>
-          <p class="section-copy">それでも、</p>
-          <ul class="empathy-list">
-            <li>確認待ち</li>
-            <li>書類探し</li>
-            <li>同じ内容の入力</li>
-            <li>修正ややり直し</li>
+        <div class="intro-grid">
+          <div class="section-head">
+            <h2>毎日頑張っているのに、仕事が終わらない。</h2>
+            <p class="section-copy">社員はサボっていない。</p>
+            <p class="section-copy">社長も忙しい。</p>
+            <p class="section-copy">それでも、</p>
+            <ul class="empathy-list">
+              <li>確認待ち</li>
+              <li>書類探し</li>
+              <li>同じ内容の入力</li>
+              <li>修正ややり直し</li>
+            </ul>
+            <p class="section-copy">そんな小さな時間が積み重なり、会社全体の生産性を下げていることがあります。</p>
+            <p class="section-copy">一つひとつは小さな手間でも、毎日繰り返されることで、大きな時間になります。</p>
+            <p class="section-copy">さらに、近年はAIという言葉を耳にする機会も増え、</p>
+            <p class="section-copy">「何から始めればいいのかわからない」</p>
+            <p class="section-copy">「このままで大丈夫なのだろうか」</p>
+            <p class="section-copy">と感じている経営者の方も少なくありません。</p>
+          </div>
+          <ul class="feature-points" aria-label="診断の特徴">
+            <li><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="3"/><path d="M3 19c0-3 2.2-5 5-5s5 2 5 5"/><circle cx="17" cy="8" r="2.4"/><path d="M14.5 19c.4-2.6 2-4.2 4.3-4.6"/></svg></span><span>従業員20名以下の企業向け</span></li>
+            <li><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M9 20h6"/><path d="M12 16v4"/></svg></span><span>オンラインで完結</span></li>
+            <li><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></span><span>PDF診断レポート付き</span></li>
+            <li><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M9 3.5v3"/><path d="M15 3.5v3"/><path d="M9 17.5v3"/><path d="M15 17.5v3"/><path d="M3.5 9v6"/><path d="M20.5 9v6"/><path d="M10 12h4"/></svg></span><span>AIありきの提案はしません</span></li>
           </ul>
-          <p class="section-copy">そんな小さな時間が積み重なり、会社全体の生産性を下げていることがあります。</p>
-          <p class="section-copy">一つひとつは小さな手間でも、毎日繰り返されることで、大きな時間になります。</p>
-          <p class="section-copy">さらに、近年はAIという言葉を耳にする機会も増え、</p>
-          <p class="section-copy">「何から始めればいいのかわからない」</p>
-          <p class="section-copy">「このままで大丈夫なのだろうか」</p>
-          <p class="section-copy">と感じている経営者の方も少なくありません。</p>
         </div>
         <div class="problem-grid">
           <div class="problem-item">必要な書類やデータを探すのに時間がかかる</div>
@@ -565,44 +662,45 @@
         </div>
         <div class="flow-grid">
           <div class="step-item">
-            <div class="step-number">1</div>
-            <h3 class="step-title"><span class="nowrap">Googleフォームから申込み</span></h3>
-            <p class="step-note">&nbsp;</p>
+            <span class="step-label">STEP 01</span>
+            <div class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5.5h14v13H5z"/><path class="accent-line" d="M8 9h8"/><path d="M8 13h5"/><path class="accent-line" d="M16.5 15.5l1.5 1.5 3-3"/></svg></div>
+            <h3 class="step-title">Googleフォームから申込み</h3>
           </div>
           <div class="step-item">
-            <div class="step-number">2</div>
-            <h3 class="step-title">日程調整</h3>
-            <p class="step-note">&nbsp;</p>
+            <span class="step-label">STEP 02</span>
+            <div class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4.5v3"/><path d="M18 4.5v3"/><path d="M4.5 8h15"/><path d="M5 6h14v13H5z"/><path class="accent-line" d="M8 12h3"/><path class="accent-line" d="M14 12h2"/><path d="M8 16h2"/></svg></div>
+            <h3 class="step-title">予約ページで日時を選択</h3>
           </div>
           <div class="step-item">
-            <div class="step-number">3</div>
+            <span class="step-label">STEP 03</span>
+            <div class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4.5h10l2 2v13H5v-13z"/><path d="M9 10h6"/><path d="M9 14h4"/><path class="accent-line" d="M15.5 16.5l1.4 1.4 2.8-3"/></svg></div>
             <h3 class="step-title">事前確認</h3>
             <p class="step-note">申込み内容を確認し、必要に応じて面談前の確認を行います。</p>
           </div>
           <div class="step-item">
-            <div class="step-number">4</div>
+            <span class="step-label">STEP 04</span>
+            <div class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="12" height="10" rx="2"/><path class="accent-line" d="M16 10l4-2.5v9L16 14"/><path d="M7.5 17.5h5"/></svg></div>
             <h3 class="step-title">約60分の<span class="nowrap">オンライン面談</span></h3>
-            <p class="step-note">&nbsp;</p>
           </div>
           <div class="step-item">
-            <div class="step-number">5</div>
+            <span class="step-label">STEP 05</span>
+            <div class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v3"/><path d="M12 17v3"/><path d="M4 12h3"/><path d="M17 12h3"/><circle cx="12" cy="12" r="4.5"/><path class="accent-line" d="M9.5 12h5"/><path class="accent-line" d="M12 9.5v5"/></svg></div>
             <h3 class="step-title">AIによる整理・分析</h3>
-            <p class="step-note">&nbsp;</p>
           </div>
           <div class="step-item">
-            <div class="step-number">6</div>
+            <span class="step-label">STEP 06</span>
+            <div class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5l7 3v5.5c0 3.5-2.3 5.8-7 7-4.7-1.2-7-3.5-7-7V7.5z"/><path class="accent-line" d="M8.5 12.5l2.2 2.2 4.8-5"/></svg></div>
             <h3 class="step-title">Edge Currentによる確認</h3>
-            <p class="step-note">&nbsp;</p>
           </div>
           <div class="step-item">
-            <div class="step-number">7</div>
+            <span class="step-label">STEP 07</span>
+            <div class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14v11H8l-3 3z"/><path class="accent-line" d="M8.5 9h7"/><path d="M8.5 12.5h4"/></svg></div>
             <h3 class="step-title">面談中に診断結果を説明</h3>
-            <p class="step-note">&nbsp;</p>
           </div>
           <div class="step-item">
-            <div class="step-number">8</div>
-            <h3 class="step-title">面談終了後に<span class="nowrap">PDFレポートを送付</span></h3>
-            <p class="step-note">&nbsp;</p>
+            <span class="step-label">STEP 08</span>
+            <div class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v5h4"/><path class="accent-line" d="M9.5 13h5"/><path class="accent-line" d="M9.5 16h3.5"/><path d="M5 7.5v13h10"/></svg></div>
+            <h3 class="step-title">面談終了後にPDFレポートを送付</h3>
           </div>
         </div>
       </div>
