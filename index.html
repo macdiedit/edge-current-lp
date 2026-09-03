@@ -605,7 +605,60 @@
       </div>
     </div>
   </header>
-
+  <!-- ============================================================
+     チェックリストDLへの導線ブロック（ここから）
+     設置場所：<header class="hero">...</header> の閉じタグ直後
+     役割：診断申込の前段として、軽い接点（資料DL）を用意する
+     ============================================================ -->
+<div class="ecx-soft-cta">
+  <div class="ecx-soft-cta__inner">
+    <div class="ecx-soft-cta__text">
+      <p class="ecx-soft-cta__eyebrow">まずは資料だけでも</p>
+      <p class="ecx-soft-cta__title">
+        無料の「探す時間」チェックリスト20項目で、<br class="ecx-soft-cta__br">
+        今の会社が失っている時間を数字にできます。
+      </p>
+    </div>
+    <a href="/checklist/" class="ecx-soft-cta__btn">
+      無料でダウンロードする
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</div>
+ 
+<style>
+  .ecx-soft-cta{
+    background:#F5F8FB;
+    border-bottom:1px solid #E2E8EF;
+    padding:18px 24px;
+  }
+  .ecx-soft-cta__inner{
+    max-width:1040px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:20px;flex-wrap:wrap;
+  }
+  .ecx-soft-cta__eyebrow{
+    font-size:12px;font-weight:700;color:#2F6F5E;
+    margin:0 0 4px 0;letter-spacing:.02em;
+  }
+  .ecx-soft-cta__title{
+    font-size:14.5px;color:#17202A;margin:0;line-height:1.6;
+  }
+  .ecx-soft-cta__btn{
+    display:inline-flex;align-items:center;gap:8px;flex-shrink:0;
+    background:#0F2742;color:#fff;font-weight:700;font-size:14px;
+    padding:12px 20px;border-radius:8px;text-decoration:none;
+    white-space:nowrap;
+  }
+  @media (max-width:640px){
+    .ecx-soft-cta__inner{flex-direction:column;align-items:flex-start;}
+    .ecx-soft-cta__btn{width:100%;justify-content:center;}
+    .ecx-soft-cta__br{display:none;}
+  }
+</style>
+<!-- ============================================================
+     チェックリストDLへの導線ブロック（ここまで）
+     ============================================================ -->
   <main>
     <section class="band">
       <div class="wrap">
