@@ -2,37 +2,10 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'none'; script-src-attr 'none'; style-src 'sha256-L33FPIHg92hdMLDA4OVrGe3rNlKNwC5gGf9XVBnvHro='; style-src-attr 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ダウンロードありがとうございます | Edge Current</title>
-
-<!--
-  ============================================================
-  【TODO 1】Meta ピクセルの設置
-  下記の YOUR_PIXEL_ID を、実際のMetaピクセルIDに置き換えてください。
-  取得方法：Meta Business Suite → イベントマネージャ → ピクセルを追加
-  広告をまだ出していなくても、ここに設置しておけば今日からデータが貯まります。
-  ============================================================
--->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', 'YOUR_PIXEL_ID'); // ← ここを置き換え
-fbq('track', 'PageView');
-// 「チェックリストをダウンロードした人」セグメントを作るためのカスタムイベント
-// このイベント名 'ChecklistDownload' を、後で広告マネージャの
-// カスタムオーディエンス作成時に指定してください
-fbq('trackCustom', 'ChecklistDownload');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
-/></noscript>
-<!-- ============================================================ -->
 
 <style>
   :root{
@@ -175,15 +148,6 @@ src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
 <footer>
   Edge Current ／ Business Transformation Partner
 </footer>
-
-<script>
-  // ダウンロードボタンクリック時にもピクセルイベントを送る（保険）
-  document.getElementById('dlButton').addEventListener('click', function(){
-    if (typeof fbq === 'function') {
-      fbq('trackCustom', 'ChecklistDownloadClick');
-    }
-  });
-</script>
 
 </body>
 </html>
