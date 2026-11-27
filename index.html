@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-tRrcb66r9rKr7UxdCok/dDbMm3EGjVWmUCha2HVOZ1I='; script-src-attr 'none'; style-src 'sha256-PaeXaXAvVE0wzXOm/XuMFLXIw+Och6XuJDwScfP9QLs=' 'sha256-b621fFYLFRolv2/z9AJlguapFAsLUGZxWHJ+X64xPz8='; style-src-attr 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-tRrcb66r9rKr7UxdCok/dDbMm3EGjVWmUCha2HVOZ1I=' 'sha256-A2EtetC5Wg4sy9zCuJ4gMQww68YwWClYLcuEgTwJxOk='; script-src-attr 'none'; style-src 'sha256-jTZXPWxCIoD8FEj//MDSVXvLuZfX5P6Bn/4Y96DfrYI=' 'sha256-b621fFYLFRolv2/z9AJlguapFAsLUGZxWHJ+X64xPz8='; style-src-attr 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI業務改善診断 | Edge Current</title>
@@ -614,6 +614,17 @@
       }
       .final-cta h2 { font-size: 22px; line-height: 1.4; }
     }
+  
+    .footer-details { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; width: 100%; margin-top: 18px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 10px 24px; }
+    .footer-links a { color: inherit; text-underline-offset: 4px; }
+    .copyright { margin: 0; font-size: 12px; line-height: 1.7; }
+    .privacy-note { font-size: 12px; line-height: 1.8; margin: 14px 0 0; }
+    .privacy-note a { text-underline-offset: 3px; }
+    @media (max-width: 560px) {
+      .footer-details { align-items: flex-start; flex-direction: column; }
+      .footer-links { gap: 12px 20px; }
+    }
   </style>
 </head>
 <body>
@@ -635,7 +646,7 @@
       <p class="lead">毎日の「待つ・探す・やり直す」を見える化し、あなたの会社が最初に改善すべき仕事を整理します。</p>
       <div class="cta-row">
         <a class="button js-google-form-link" href="#">業務改善診断に申し込む</a>
-        <p class="hero-note">約60分のオンライン面談。申込み後、予約ページで日時を選択します。</p>
+        <p class="hero-note">約60分のオンライン面談。申込み後、予約ページで日時を選択します。<br><a href="/privacy/">個人情報の取扱いについて</a></p>
         <p class="hero-brand-copy"><strong>待つ。探す。やり直す。</strong><br>その時間を、価値ある時間へ。</p>
       </div>
     </div>
@@ -837,7 +848,7 @@
           <div class="trust-item"><strong>効果を数字で整理</strong>作業時間や頻度をもとに、年間削減時間や改善余地を整理します。</div>
           <div class="trust-item"><strong>事実に基づいて診断</strong>面談で確認できた事実をもとに分析し、推測だけで診断結果を作りません。</div>
           <div class="trust-item"><strong>診断目的に限定</strong>面談内容は、診断サービスの提供目的にのみ使用します。</div>
-          <div class="trust-item"><strong>録音時は事前説明</strong>録音を行う場合は事前に説明し、診断サービス提供完了後に削除します。</div>
+          <div class="trust-item"><strong>録音時は事前説明</strong>録音・外部サービスによる文字起こしは事前に説明し、同意を得て行います。録音データは文字起こし完了・内容確認後に速やかに削除します。</div>
         </div>
       </div>
     </section>
@@ -889,6 +900,7 @@
         </div>
         <div class="cta-row">
           <a class="button js-google-form-link" href="#">業務改善診断に申し込む</a>
+          <p class="privacy-note"><a href="/privacy/">プライバシーポリシー</a>をご確認のうえ、お申し込みください。</p>
         </div>
         <ul class="cta-points" aria-label="申込み前の補足">
           <li>オンライン完結</li>
@@ -908,7 +920,14 @@
   </main>
 
   <footer>
-    <div class="wrap">Edge Current AI業務改善診断</div>
+    <div class="wrap">Edge Current AI業務改善診断<div class="footer-details">
+      <nav class="footer-links" aria-label="フッターナビゲーション">
+        <a href="/about/">事業概要</a>
+        <a href="/privacy/">プライバシーポリシー</a>
+        <a href="mailto:info@edgecurrent.net">お問い合わせ</a>
+      </nav>
+      <p class="copyright">© <span data-copyright-year>2026</span> Edge Current</p>
+    </div></div>
   </footer>
 
   <script>
@@ -918,6 +937,11 @@
       link.href = GOOGLE_FORM_URL;
       link.target = "_blank";
       link.rel = "noopener";
+    });
+  </script>
+  <script>
+    document.querySelectorAll("[data-copyright-year]").forEach((element) => {
+      element.textContent = String(new Date().getFullYear());
     });
   </script>
 </body>

@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'none'; script-src-attr 'none'; style-src 'sha256-L33FPIHg92hdMLDA4OVrGe3rNlKNwC5gGf9XVBnvHro='; style-src-attr 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-A2EtetC5Wg4sy9zCuJ4gMQww68YwWClYLcuEgTwJxOk='; script-src-attr 'none'; style-src 'sha256-aOlDTfWFDYs6siMzUJa5DKwzJhiTOa7UWAwJ9dXxemY='; style-src-attr 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ダウンロードありがとうございます | Edge Current</title>
@@ -86,7 +86,18 @@
     .card{padding:32px 24px;}
     h1{font-size:20px;}
   }
-</style>
+
+    .footer-details { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; width: 100%; margin-top: 18px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 10px 24px; }
+    .footer-links a { color: inherit; text-underline-offset: 4px; }
+    .copyright { margin: 0; font-size: 12px; line-height: 1.7; }
+    .privacy-note { font-size: 12px; line-height: 1.8; margin: 14px 0 0; }
+    .privacy-note a { text-underline-offset: 3px; }
+    @media (max-width: 560px) {
+      .footer-details { align-items: flex-start; flex-direction: column; }
+      .footer-links { gap: 12px 20px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -102,15 +113,9 @@
       </div>
 
       <h1>お申し込みいただき、ありがとうございます。</h1>
-      <p class="lead">ご入力いただいたメールアドレスにも、同じ資料をお送りしました。</p>
+      <p class="lead">資料は、下のボタンからダウンロードできます。</p>
 
-      <!--
-        【反映済み】PDFリンク：探す時間チェックリスト_汎用版_自動計算版.pdf（Google Drive）
-        ・印刷しても通常版と見た目は同じなので、これ1つで両用途に対応できます
-        ・フォームで取得した「業種」は、ダウンロードの出し分けには使わず、
-          見込み客管理（誰がどの業種か）のためだけに使います
-      -->
-      <a href="https://drive.google.com/file/d/1DN1k6K9qC4C30WyGbtVcNALItakTyOdj/view?usp=sharing" class="dl-btn" id="dlButton">
+      <a href="https://drive.google.com/file/d/1IoNUEX1MCYiNFPrqJKXccvKfds8AkB4N/view?usp=drive_link" class="dl-btn" id="dlButton">
         資料をダウンロードする
       </a>
       <p class="dl-sub">PDF形式・約1MB／Acrobat Readerで開くと自動計算されます</p>
@@ -123,9 +128,8 @@
       <div class="divider"></div>
 
       <div class="line-block">
-        <h3>LINEでもリマインドを受け取れます</h3>
-        <p>メールより見逃しにくいので、よろしければご登録ください。記入が途中で止まっていても、LINEから続きを進められます。</p>
-        <!-- 【反映済み】LINE公式アカウント友だち追加リンク -->
+        <h3>LINEでも無料診断のご案内やご相談を受け付けています</h3>
+        <p>資料のご利用や無料診断のご予約、業務改善に関するご相談は、LINEからもお気軽にどうぞ。よろしければ、友だち追加をお願いします。</p>
         <a href="https://lin.ee/RuPdMxF" class="line-btn" target="_blank" rel="noopener">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.5 2 2 5.9 2 10.7c0 3.4 2.3 6.4 5.7 7.9-.3 1-1 3.3-1.1 3.8-.1.6.2.6.5.4.2-.1 3-2 4.2-2.8.9.1 1.8.2 2.7.2 5.5 0 10-3.9 10-8.7C22 5.9 17.5 2 12 2z"/></svg>
           LINEで友だち追加する
@@ -137,7 +141,7 @@
         <a href="https://forms.gle/83FBegiZ1ow7P1Te9" class="book-btn" target="_blank" rel="noopener">
           このまま無料診断を予約する
         </a>
-        <p class="book-sub">Googleフォームから日程調整に進みます</p>
+        <p class="book-sub">Googleフォームから日程調整に進みます。<br><a href="/privacy/">プライバシーポリシー</a></p>
       </div>
 
       <p class="escape">今すぐでなくて構いません。まずはシートに記入してみてください。</p>
@@ -147,7 +151,20 @@
 
 <footer>
   Edge Current ／ Business Transformation Partner
+  <div class="wrap"><div class="footer-details">
+      <nav class="footer-links" aria-label="フッターナビゲーション">
+        <a href="/about/">事業概要</a>
+        <a href="/privacy/">プライバシーポリシー</a>
+        <a href="mailto:info@edgecurrent.net">お問い合わせ</a>
+      </nav>
+      <p class="copyright">© <span data-copyright-year>2026</span> Edge Current</p>
+    </div></div>
 </footer>
 
+  <script>
+    document.querySelectorAll("[data-copyright-year]").forEach((element) => {
+      element.textContent = String(new Date().getFullYear());
+    });
+  </script>
 </body>
 </html>
