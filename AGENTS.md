@@ -72,8 +72,11 @@
 新規ページを追加するときは、次のヘッダーを標準として使う（2026-11-27 決定。基準は `checklist/index.html` のヘッダー）。
 
 - 背景は白。ヘッダーの下に薄い境界線（1px、`--line`）を入れる。ロゴは左寄せ。
-- ロゴ画像は `assets/images/checklist-logo-mark.png`（40×40px）と `assets/images/checklist-logo-word.png`（高さ26px、幅は自動）を使う。両者の間隔は10px。
-- ヘッダー内側の余白は上下22px・左右24px、最大幅1040px、縦は中央揃え。スマートフォン用の別設定は設けない。
+- ロゴ画像は `assets/images/checklist-logo-mark.png` と `assets/images/checklist-logo-word.png` を使う。
+  - PC: マーク40px、文字画像の高さ26px（幅は自動）、間隔10px。
+  - スマートフォン（幅560px以下）: マーク26px、文字画像の高さ17px、間隔7px。
+  - トップページはヘッダーが写真の上にあるため右寄せ、それ以外のページは左寄せ。
+- ヘッダー内側の余白は上下22px・左右24px、最大幅1040px、縦は中央揃え。
 - 実装例は `about/index.html` の `.site-header`、`.site-header-inner`、`.logo`、`.logo-mark`、`.logo-word`。
 - 理由: 文字画像は濃いネイビーのため、ネイビーなど暗い背景の上では「Current」が読めなくなる。暗い背景の上にロゴを置かない。
 - CSSを変えたときは、メタCSPのSHA-256ハッシュも更新する。
