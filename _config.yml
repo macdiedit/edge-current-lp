@@ -1,0 +1,8 @@
+# GitHub Pages(Jekyll)の公開対象から、内部運用ファイルを除外する。
+# これらは公開サイトで配信しない。内容の更新ルールは AGENTS.md を参照。
+exclude:
+  - AGENTS.md
+  - CLAUDE.md
+  - PROJECT_STATUS.md
+  - README.md
+  - _config.yml
