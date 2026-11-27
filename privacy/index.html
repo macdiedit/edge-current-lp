@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-A2EtetC5Wg4sy9zCuJ4gMQww68YwWClYLcuEgTwJxOk='; script-src-attr 'none'; style-src 'sha256-j7OqCEEs/TnNv9CElB4UMYfsW2tnjFy0BrTWiHoUnis='; style-src-attr 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-A2EtetC5Wg4sy9zCuJ4gMQww68YwWClYLcuEgTwJxOk='; script-src-attr 'none'; style-src 'sha256-RODSQPIDbL3zdekKHTLTjZgLHhnShiccKY7Rei9o5lM='; style-src-attr 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>プライバシーポリシー | Edge Current</title>
@@ -18,11 +18,12 @@
     body { margin: 0; background: var(--paper); }
     a { color: inherit; text-underline-offset: 4px; }
     .wrap { max-width: 1120px; margin: 0 auto; padding: 0 22px; }
-    .site-header { background: var(--navy); padding: 32px 0; }
-    .site-header .wrap { display: flex; justify-content: flex-end; }
-    .brand-logo { display: inline-flex; align-items: center; gap: 20px; }
-    .brand-logo-mark { display: block; height: 32px; width: auto; }
-    .brand-logo-type { display: block; height: 22px; width: auto; }
+    /* header: checklist/index.html と同じ寸法 */
+    .site-header { background: #fff; border-bottom: 1px solid var(--line); }
+    .site-header-inner { display: flex; align-items: center; justify-content: space-between; padding: 22px 24px; max-width: 1040px; margin: 0 auto; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-mark { display: block; width: 40px; height: 40px; flex-shrink: 0; object-fit: contain; }
+    .logo-word { display: block; height: 26px; width: auto; object-fit: contain; }
     main { max-width: 864px; margin: 0 auto; padding: 40px 22px 72px; }
     .breadcrumb { margin: 0 0 36px; color: var(--muted); font-size: 13px; }
     h1, h2, p { margin-top: 0; }
@@ -50,15 +51,11 @@
     footer { background: #081929; color: #b8c7d5; font-size: 13px; padding: 22px 0; }
     @media (max-width: 820px) {
       .wrap { padding: 0 18px; }
-      .site-header { padding: 24px 0; }
-      .brand-logo-mark { height: 26px; }
-      .brand-logo-type { height: 17px; }
       main { padding: 28px 18px 48px; }
       .breadcrumb { margin-bottom: 28px; }
       h2 { font-size: 20px; }
     }
     @media (max-width: 560px) {
-      .brand-logo { gap: 10px; }
       .business-row { grid-template-columns: 1fr; gap: 6px; padding: 20px 0; }
       th, td { padding: 12px 8px; font-size: 14px; }
     }
@@ -77,9 +74,9 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="wrap"><a class="brand-logo" href="/" aria-label="Edge Current ホーム">
-      <img class="brand-logo-mark" src="/assets/images/Logo.png" alt="">
-      <img class="brand-logo-type" src="/assets/images/Font.PNG" alt="Edge Current">
+    <div class="site-header-inner"><a class="logo" href="/" aria-label="Edge Current ホーム">
+      <img class="logo-mark" src="/assets/images/checklist-logo-mark.png" alt="">
+      <img class="logo-word" src="/assets/images/checklist-logo-word.png" alt="Edge Current">
     </a></div>
   </header>
   <main id="main">
