@@ -66,3 +66,14 @@
 ## 9. 並行作業の禁止
 
 **複数のAI（Claude・Codexなど）が同じ変更を同時に編集しない。** 着手前に、他のAIまたは人が同一箇所を作業中でないか（未Commit・未Push の変更、進行中のセッションなど）を確認する。
+
+## 10. 共通ヘッダー（新規ページの標準デザイン）
+
+新規ページを追加するときは、次のヘッダーを標準として使う（2026-11-27 決定。基準は `checklist/index.html` のヘッダー）。
+
+- 背景は白。ヘッダーの下に薄い境界線（1px、`--line`）を入れる。ロゴは左寄せ。
+- ロゴ画像は `assets/images/checklist-logo-mark.png`（40×40px）と `assets/images/checklist-logo-word.png`（高さ26px、幅は自動）を使う。両者の間隔は10px。
+- ヘッダー内側の余白は上下22px・左右24px、最大幅1040px、縦は中央揃え。スマートフォン用の別設定は設けない。
+- 実装例は `about/index.html` の `.site-header`、`.site-header-inner`、`.logo`、`.logo-mark`、`.logo-word`。
+- 理由: 文字画像は濃いネイビーのため、ネイビーなど暗い背景の上では「Current」が読めなくなる。暗い背景の上にロゴを置かない。
+- CSSを変えたときは、メタCSPのSHA-256ハッシュも更新する。
