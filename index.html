@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-tRrcb66r9rKr7UxdCok/dDbMm3EGjVWmUCha2HVOZ1I=' 'sha256-A2EtetC5Wg4sy9zCuJ4gMQww68YwWClYLcuEgTwJxOk='; script-src-attr 'none'; style-src 'sha256-jTZXPWxCIoD8FEj//MDSVXvLuZfX5P6Bn/4Y96DfrYI=' 'sha256-b621fFYLFRolv2/z9AJlguapFAsLUGZxWHJ+X64xPz8='; style-src-attr 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-tRrcb66r9rKr7UxdCok/dDbMm3EGjVWmUCha2HVOZ1I=' 'sha256-A2EtetC5Wg4sy9zCuJ4gMQww68YwWClYLcuEgTwJxOk='; script-src-attr 'none'; style-src 'sha256-qaYSv6VSUi0G9odhRWherNPHs8ltrIvooLukwGSFVVU=' 'sha256-b621fFYLFRolv2/z9AJlguapFAsLUGZxWHJ+X64xPz8='; style-src-attr 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI業務改善診断 | Edge Current</title>
@@ -46,19 +46,23 @@
       display: flex;
       justify-content: flex-end;
     }
+    /* ロゴ: checklist/index.html と同じ寸法（AGENTS.md 第10項） */
     .brand-logo {
       align-items: center;
       display: flex;
-      gap: 20px;
+      gap: 10px;
     }
     .brand-logo-mark {
       display: block;
-      height: 32px;
-      width: auto;
+      flex-shrink: 0;
+      height: 40px;
+      object-fit: contain;
+      width: 40px;
     }
     .brand-logo-type {
       display: block;
-      height: 22px;
+      height: 26px;
+      object-fit: contain;
       width: auto;
     }
     .hero-copy {
@@ -545,8 +549,6 @@
         min-height: 0;
         padding: 24px 20px 40px;
       }
-      .brand-logo-mark { height: 26px; }
-      .brand-logo-type { height: 17px; }
       .intro-grid,
       .service-grid,
       .problem-grid,
@@ -579,14 +581,16 @@
       .feature-points li { min-height: auto; }
     }
 
+    @media (max-width: 560px) {
+      .brand-logo { gap: 7px; }
+      .brand-logo-mark { height: 26px; width: 26px; }
+      .brand-logo-type { height: 17px; }
+    }
     @media (max-width: 480px) {
       .hero {
         background-position: left center, 78% center;
         padding: 20px 16px 32px;
       }
-      .brand-logo { gap: 10px; }
-      .brand-logo-mark { height: 22px; }
-      .brand-logo-type { height: 15px; }
       .hero-copy { max-width: 88%; }
       h1 {
         font-size: clamp(24px, 7.2vw, 28px);
@@ -631,8 +635,8 @@
   <header class="hero">
     <div class="hero-topbar">
       <div class="brand-logo">
-        <img class="brand-logo-mark" src="assets/images/Logo.png" alt="">
-        <img class="brand-logo-type" src="assets/images/Font.PNG" alt="Edge Current">
+        <img class="brand-logo-mark" src="assets/images/checklist-logo-mark.png" alt="">
+        <img class="brand-logo-type" src="assets/images/checklist-logo-word.png" alt="Edge Current">
       </div>
     </div>
 

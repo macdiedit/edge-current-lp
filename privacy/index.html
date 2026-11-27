@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-A2EtetC5Wg4sy9zCuJ4gMQww68YwWClYLcuEgTwJxOk='; script-src-attr 'none'; style-src 'sha256-RODSQPIDbL3zdekKHTLTjZgLHhnShiccKY7Rei9o5lM='; style-src-attr 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-A2EtetC5Wg4sy9zCuJ4gMQww68YwWClYLcuEgTwJxOk='; script-src-attr 'none'; style-src 'sha256-fmvguAKPsz1NDIRWb4/0V9oXh3EVf80c5BW54fs/fq0='; style-src-attr 'none'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>プライバシーポリシー | Edge Current</title>
@@ -24,6 +24,11 @@
     .logo { display: flex; align-items: center; gap: 10px; }
     .logo-mark { display: block; width: 40px; height: 40px; flex-shrink: 0; object-fit: contain; }
     .logo-word { display: block; height: 26px; width: auto; object-fit: contain; }
+    @media (max-width: 560px) {
+      .logo { gap: 7px; }
+      .logo-mark { width: 26px; height: 26px; }
+      .logo-word { height: 17px; }
+    }
     main { max-width: 864px; margin: 0 auto; padding: 40px 22px 72px; }
     .breadcrumb { margin: 0 0 36px; color: var(--muted); font-size: 13px; }
     h1, h2, p { margin-top: 0; }
